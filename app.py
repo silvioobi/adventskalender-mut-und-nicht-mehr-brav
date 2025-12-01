@@ -124,7 +124,7 @@ st.markdown(
             ✨ "Nicht mehr brav sein" - Advent ✨
         </div>
         <h1 style="margin: 0.4rem 0 0.8rem 0; font-size: 2.5rem; color:#2c2c2c;">
-            🎄 Adventskalender Mut, Neues und nicht mehr brav 🎄
+            🎄 Adventskalender Mutiges, Neues und Highlights 🎄
         </h1>
         <p style="max-width: 680px; margin: 0 auto; color:#3a3a3a; font-size: 1.05rem; line-height: 1.6;">
             Hinter jedem Türchen wartet etwas Neues, etwas Mutiges, ein Schritt weg vom brav sein oder ein Highlight.
