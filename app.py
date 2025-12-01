@@ -121,13 +121,13 @@ st.markdown(
     """
     <div style="margin-bottom: 2rem; text-align: center;">
         <div style="font-size:0.9rem; letter-spacing:0.2em; text-transform:uppercase; color:#c69063; font-weight:600; margin-bottom: 0.5rem;">
-            ✨ Spiritueller Coaching-Advent ✨
+            ✨ "Nicht mehr brav sein" - Advent ✨
         </div>
         <h1 style="margin: 0.4rem 0 0.8rem 0; font-size: 2.5rem; color:#2c2c2c;">
-            🎄 Dein Adventskalender der Präsenz 🎄
+            🎄 Adventskalender Mut, Neues und nicht mehr brav 🎄
         </h1>
         <p style="max-width: 680px; margin: 0 auto; color:#3a3a3a; font-size: 1.05rem; line-height: 1.6;">
-            Hinter jedem Türchen wartet ein Moment der Stille, Bewusstheit und inneren Ausrichtung.
+            Hinter jedem Türchen wartet etwas Neues, etwas Mutiges, ein Schritt weg vom brav sein oder ein Highlight.
             <br><strong>Klicke auf ein Bild</strong>, um die Botschaft für diesen Tag zu entdecken.
         </p>
     </div>
