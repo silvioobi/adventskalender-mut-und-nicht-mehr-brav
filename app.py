@@ -61,9 +61,10 @@ p, span, div {
 st.markdown(BASE_CSS, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# Konfiguration: Pfad zur Excel-Datei
+# Konfiguration: Pfad zur Excel-Datei und Bilder-Ordner
 # ---------------------------------------------------------
 EXCEL_PATH = Path("advent_content.xlsx")
+IMAGES_DIR = Path("images")
 
 
 # ---------------------------------------------------------
@@ -121,13 +122,13 @@ st.markdown(
     """
     <div style="margin-bottom: 2rem; text-align: center;">
         <div style="font-size:0.9rem; letter-spacing:0.2em; text-transform:uppercase; color:#c69063; font-weight:600; margin-bottom: 0.5rem;">
-            ✨ "Nicht mehr brav sein" - Advent ✨
+            ✨ Spiritueller Coaching-Advent ✨
         </div>
         <h1 style="margin: 0.4rem 0 0.8rem 0; font-size: 2.5rem; color:#2c2c2c;">
-            🎄 Adventskalender Mutiges, Neues und Highlights 🎄
+            🎄 Dein Adventskalender der Präsenz 🎄
         </h1>
         <p style="max-width: 680px; margin: 0 auto; color:#3a3a3a; font-size: 1.05rem; line-height: 1.6;">
-            Hinter jedem Türchen wartet etwas Neues, etwas Mutiges, ein Schritt weg vom brav sein oder ein Highlight.
+            Hinter jedem Türchen wartet ein Moment der Stille, Bewusstheit und inneren Ausrichtung.
             <br><strong>Klicke auf ein Bild</strong>, um die Botschaft für diesen Tag zu entdecken.
         </p>
     </div>
@@ -373,6 +374,42 @@ CARDS_CSS = """
 # ---------------------------------------------------------
 # HTML für die 24 Flip-Cards erzeugen
 # ---------------------------------------------------------
+import base64
+
+
+def get_image_base64(image_filename: str) -> str:
+    """Konvertiert lokales Bild zu Base64 für Einbettung im HTML."""
+    if not image_filename:
+        return ""
+
+    image_path = IMAGES_DIR / image_filename
+
+    if not image_path.exists():
+        print(f"Warnung: Bild nicht gefunden: {image_path}")
+        return ""
+
+    try:
+        with open(image_path, "rb") as img_file:
+            img_data = img_file.read()
+            b64_data = base64.b64encode(img_data).decode()
+
+            # Bildformat erkennen
+            suffix = image_path.suffix.lower()
+            mime_types = {
+                '.jpg': 'image/jpeg',
+                '.jpeg': 'image/jpeg',
+                '.png': 'image/png',
+                '.gif': 'image/gif',
+                '.webp': 'image/webp'
+            }
+            mime_type = mime_types.get(suffix, 'image/jpeg')
+
+            return f"data:{mime_type};base64,{b64_data}"
+    except Exception as e:
+        print(f"Fehler beim Laden von {image_path}: {e}")
+        return ""
+
+
 cards_html_parts = ['<div class="calendar-grid">']
 
 for day in range(1, 25):
@@ -392,9 +429,13 @@ for day in range(1, 25):
     title_esc = html.escape(title)
     text_esc = html.escape(text).replace("\n", "&#10;")
     person_esc = html.escape(person)
+
+    # Lokales Bild laden und zu Base64 konvertieren
     image_style = ""
     if image_url:
-        image_style = f"background-image: url('{html.escape(image_url)}');"
+        base64_image = get_image_base64(image_url)
+        if base64_image:
+            image_style = f"background-image: url('{base64_image}');"
 
     locked_class = "locked" if day > max_open_day else ""
 
